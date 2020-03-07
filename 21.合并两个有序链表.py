@@ -13,15 +13,18 @@
 
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
-        p = ListNode(-1)
-        head = p
-        while l1 is not None and l2 is not None:
+        head=ListNode(0)
+        cur=head
+        while l1 and l2:
             if l1.val <= l2.val:
-                p.next, l1 = l1, l1.next
+                cur.next, l1 = l1, l1.next
             else:
-                p.next, l2 = l2, l2.next
-            p = p.next
-        p.next = l1 if l1 is not None else l2
+                cur.next, l2 = l2, l2.next
+            cur = cur.next
+        if l1:
+            cur.next = l1
+        if l2:
+            cur.next = l2
         return head.next
 # @lc code=end
 
